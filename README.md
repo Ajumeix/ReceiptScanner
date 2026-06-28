@@ -1,84 +1,98 @@
 # ReceiptScanner
 
-A free, fully local desktop app to scan receipts, extract VAT TIN and totals using OCR, and export to Excel. No internet required. No data leaves your machine.
+ReceiptScanner is a free, fully local desktop app to scan receipts, extract VAT TIN and totals using OCR, and export to Excel. No internet required. No data leaves your machine.
 
-![Python](https://img.shields.io/badge/Python-3.11+-blue)
-![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Mac%20%7C%20Linux-green)
-![License](https://img.shields.io/badge/License-MIT-yellow)
-
-## Features
-
-- Import multiple receipt images at once
-- Auto-extracts VAT REG TIN, Total, and Date via OCR
-- Pick Area tool — manually select any region on the image to scan
-- Batch processing — process multiple receipts and export together
-- Export to Excel with data sheet and receipt images sheet
-- Dark / Light mode toggle
-- Fully local — no internet, no API keys, no subscriptions
-
-## Requirements
-
-- Python 3.11 or higher
-- Tesseract OCR (free, open source)
-
-## Quick Start
+## Quick start
 
 ### Windows
-
-1. Install Python 3.11 from https://www.python.org/downloads/
-2. Install Tesseract OCR from https://github.com/UB-Mannheim/tesseract/wiki
-   - Use the default install path when prompted
-3. Clone this repo:
 git clone https://github.com/Ajumeix/ReceiptScanner.git
 
 cd ReceiptScanner
-4. Double click `setup.bat` — it installs all dependencies and launches the app automatically
 
-### Mac
+cmd /c setup.bat
 
-1. Install Python 3.11 from https://www.python.org/downloads/
-2. Clone this repo:
+### Mac / Linux
 git clone https://github.com/Ajumeix/ReceiptScanner.git
 
 cd ReceiptScanner
-3. Run setup:
+
 bash setup.sh
-   This installs Tesseract via Homebrew, all Python dependencies, and launches the app automatically.
 
-### Linux
+## Download ZIP from GitHub
 
-1. Clone this repo:
-git clone https://github.com/Ajumeix/ReceiptScanner.git
+1. Open the ReceiptScanner repository on GitHub
+2. Click **Code**
+3. Click **Download ZIP**
+4. Extract the ZIP
+5. Open terminal inside the extracted folder
+6. Run:
 
-cd ReceiptScanner
-2. Run setup:
+### Windows
+cmd /c setup.bat
+
+### Mac / Linux
 bash setup.sh
-   This installs Tesseract via apt, all Python dependencies, and launches the app automatically.
+
+The setup script automatically installs all dependencies and launches the app.
+
+## Build as a native app
+
+### Windows — builds a standalone .exe
+cmd /c build_windows.bat
+Output: `dist/ReceiptScanner.exe`
+
+### Mac — builds a .app bundle
+bash build_mac.sh
+Output: `dist/ReceiptScanner`
+
+### Linux — builds executable + installs app launcher
+bash build_linux.sh
+Output: `dist/ReceiptScanner` + searchable from your app menu as `ReceiptScanner`
+
+## Required
+
+- Python 3.11+
+- Tesseract OCR
+  - **Windows**: download from https://github.com/UB-Mannheim/tesseract/wiki and install using default path
+  - **Mac**: installed automatically via Homebrew in setup.sh
+  - **Linux**: installed automatically via apt in setup.sh
 
 ## Usage
 
 1. Click **Import Receipts** to load one or more receipt images
 2. Navigate between images with **Prev / Next** buttons
 3. Fields auto-fill from OCR scan — edit if needed
-4. Use **Pick Area** button next to VAT or Total to manually select a region on the image
-5. Click **Add to Batch** or press **Enter** to add receipt to batch
+4. Use **Pick Area** next to VAT or Total to manually select a region on the image
+5. Press **Enter** or click **Add to Batch** to add to batch
 6. Repeat for all receipts
-7. Click **Export to Excel** to save all receipts as a spreadsheet
-
-## Settings
-
-- Dark / Light mode toggle
-- Custom Particulars dropdown list (add your own categories)
-- Default save directory
-- Batch warning threshold
-- Filename template with `{date}` and `{n}` placeholders
+7. Click **Export to Excel** to save
 
 ## Output
 
 Exports a `.xlsx` file with two sheets:
+
 - **Receipt Data** — Date, Particulars, VAT REG TIN, Solo/Shared, Total
 - **Receipt Images** — embedded receipt photos for reference
 
-## License
+## Settings
 
-MIT License — free to use, modify, and share.
+- Dark / Light mode toggle
+- Custom Particulars dropdown list
+- Default save directory
+- Batch warning threshold
+- Filename template with `{date}` and `{n}` placeholders
+
+## Required packages
+
+- Python 3.11+
+- PyQt5
+- opencv-python
+- Pillow
+- pytesseract
+- openpyxl
+- Tesseract OCR
+
+Supported package managers in setup scripts:
+
+- apt (Ubuntu / Debian / Linux Mint)
+- Homebrew (Mac)
