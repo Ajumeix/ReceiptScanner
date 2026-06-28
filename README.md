@@ -16,84 +16,68 @@ A free, fully local desktop app to scan receipts, extract VAT TIN and totals usi
 - Dark / Light mode toggle
 - Fully local — no internet, no API keys, no subscriptions
 
-## Screenshots
-
-> Import receipts, review extracted data, export to Excel
-
 ## Requirements
 
 - Python 3.11 or higher
 - Tesseract OCR (free, open source)
 
-## Installation
+## Quick Start
 
 ### Windows
 
 1. Install Python 3.11 from https://www.python.org/downloads/
 2. Install Tesseract OCR from https://github.com/UB-Mannheim/tesseract/wiki
-   - Use default install path: `C:\Program Files\Tesseract-OCR\`
+   - Use the default install path when prompted
 3. Clone this repo:
 git clone https://github.com/Ajumeix/ReceiptScanner.git
 
 cd ReceiptScanner
-4. Run the app:
-run.bat
+4. Double click `setup.bat` — it installs all dependencies and launches the app automatically
 
 ### Mac
 
 1. Install Python 3.11 from https://www.python.org/downloads/
-2. Install Tesseract via Homebrew:
-brew install tesseract
-3. Clone this repo:
-git clone https://github.com/Ajumeix/ReceiptScanner.git
-
-cd ReceiptScanner
-4. Run the app:
-bash run.sh
-   
-   > Note: On Mac, update the tesseract path in `receipt_scanner.py` line 14:
-   > ```python
-   > pytesseract.pytesseract.tesseract_cmd = '/usr/local/bin/tesseract'
-   > ```
-
-### Linux
-
-1. Install Python 3.11 and Tesseract:
-sudo apt update
-
-sudo apt install python3.11 tesseract-ocr
 2. Clone this repo:
 git clone https://github.com/Ajumeix/ReceiptScanner.git
 
 cd ReceiptScanner
-3. Run the app:
-bash run.sh
-   
-   > Note: On Linux, update the tesseract path in `receipt_scanner.py` line 14:
-   > ```python
-   > pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract'
-   > ```
+3. Run setup:
+bash setup.sh
+   This installs Tesseract via Homebrew, all Python dependencies, and launches the app automatically.
 
-## Manual Dependency Install
-pip install pyqt5 opencv-python pillow pytesseract openpyxl
+### Linux
+
+1. Clone this repo:
+git clone https://github.com/Ajumeix/ReceiptScanner.git
+
+cd ReceiptScanner
+2. Run setup:
+bash setup.sh
+   This installs Tesseract via apt, all Python dependencies, and launches the app automatically.
 
 ## Usage
 
 1. Click **Import Receipts** to load one or more receipt images
-2. Navigate images with **Prev / Next** buttons
+2. Navigate between images with **Prev / Next** buttons
 3. Fields auto-fill from OCR scan — edit if needed
-4. Use **Pick Area** button next to VAT or Total to manually select a region
-5. Click **Add to Batch** or press **Enter** to add to batch
+4. Use **Pick Area** button next to VAT or Total to manually select a region on the image
+5. Click **Add to Batch** or press **Enter** to add receipt to batch
 6. Repeat for all receipts
-7. Click **Export to Excel** to save
+7. Click **Export to Excel** to save all receipts as a spreadsheet
 
 ## Settings
 
 - Dark / Light mode toggle
-- Custom Particulars dropdown list
+- Custom Particulars dropdown list (add your own categories)
 - Default save directory
 - Batch warning threshold
 - Filename template with `{date}` and `{n}` placeholders
+
+## Output
+
+Exports a `.xlsx` file with two sheets:
+- **Receipt Data** — Date, Particulars, VAT REG TIN, Solo/Shared, Total
+- **Receipt Images** — embedded receipt photos for reference
 
 ## License
 
